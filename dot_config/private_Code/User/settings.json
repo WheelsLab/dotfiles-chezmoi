@@ -1,0 +1,16 @@
+{
+    "gitlens.ai.model": "gitkraken",
+    "gitlens.ai.gitkraken.model": "gemini:gemini-2.0-flash",
+    "containers.containerClient": "com.microsoft.visualstudio.containers.podman",
+    "containers.orchestratorClient": "com.microsoft.visualstudio.orchestrators.podmancompose",
+    "editor.fontFamily": "'Maple Mono NF CN Medium','Droid Sans Mono', 'monospace', monospace",
+    "dev.containers.dockerComposePath": "podman compose",
+    "dev.containers.dockerPath": "podman",
+    "dev.containers.dockerSocketPath": "/run/user/1001/podman/podman.sock",
+    "workbench.colorTheme": "Gruvbox Dark Soft",
+    "workbench.iconTheme": "material-icon-theme",
+    "diffEditor.ignoreTrimWhitespace": true,
+    "makefile.configureOnOpen": true,
+    "gitlens.views.commitDetails.files.layout": "tree",
+    "EIDE.ARM.GCC.Prefix": "arm-none-eabi-"
+}

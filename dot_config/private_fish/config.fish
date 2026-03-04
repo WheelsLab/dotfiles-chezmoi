@@ -1,0 +1,22 @@
+if status is-interactive
+    set -U fish_greeting
+    export LIBVIRT_DEFAULT_URI="qemu:///system"	
+    #export LC_ALL="C"
+    # Commands to run in interactive sessions can go here
+    export MANPAGER="sh -c 'awk '\''{ gsub(/\x1B\[[0-9;]*m/, \"\", \$0); gsub(/.\x08/, \"\", \$0); print }'\'' | bat -p -lman'"
+    starship init fish | source
+    zoxide init fish | source
+    # 常用命令别名
+    alias ls='lsd'
+    alias l='ls -l'
+    alias la='ls -a'
+    alias lla='ls -la'
+    alias lt='ls --tree'
+    alias llt='ls -l --tree'
+    alias dust='dust -r'
+    alias typora='typora typora --ozone-platform-hint=auto --enable-wayland-ime'
+    alias vi='vim'
+    alias sriov-on='echo 7 | sudo tee /sys/devices/pci0000:00/0000:00:02.0/sriov_numvfs'
+    alias sriov-off='echo 0 | sudo tee /sys/devices/pci0000:00/0000:00:02.0/sriov_numvfs'
+    alias setup-podman-nv='sudo nvidia-ctk cdi generate --output=/etc/cdi/nvidia.yaml'
+end
