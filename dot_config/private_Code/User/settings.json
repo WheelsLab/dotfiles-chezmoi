@@ -1,4 +1,5 @@
 {
+    "window.autoDetectColorScheme": true,
     "gitlens.ai.model": "gitkraken",
     "gitlens.ai.gitkraken.model": "gemini:gemini-2.0-flash",
     "containers.containerClient": "com.microsoft.visualstudio.containers.podman",
@@ -9,6 +10,8 @@
     "dev.containers.dockerSocketPath": "/run/user/1001/podman/podman.sock",
     "workbench.colorTheme": "Gruvbox Dark Soft",
     "workbench.iconTheme": "material-icon-theme",
+    "editor.fontFamily": "'Sarasa Mono SC','Maple Mono NF CN Medium','Droid Sans Mono', monospace",
+    "editor.fontLigatures": true,
     "diffEditor.ignoreTrimWhitespace": true,
     "makefile.configureOnOpen": true,
     "gitlens.views.commitDetails.files.layout": "tree",
