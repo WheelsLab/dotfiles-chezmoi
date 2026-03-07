@@ -1,5 +1,6 @@
 if status is-interactive
     set -U fish_greeting
+    export EDITOR=vim
     #export LC_ALL="C"
     # Commands to run in interactive sessions can go here
     export MANPAGER="sh -c 'awk '\''{ gsub(/\x1B\[[0-9;]*m/, \"\", \$0); gsub(/.\x08/, \"\", \$0); print }'\'' | bat -p -lman'"
@@ -13,7 +14,7 @@ if status is-interactive
     alias lt='ls --tree'
     alias llt='ls -l --tree'
     alias dust='dust -r'
-    alias typora='typora typora --ozone-platform-hint=auto --enable-wayland-ime'
+    alias typora='typora --ozone-platform-hint=auto --enable-wayland-ime  --wayland-text-input-version=3' 
     alias vi='vim'
     {{ if eq .chezmoi.hostname "archer-asus-pc" }}
     alias sriov-on='echo 7 | sudo tee /sys/devices/pci0000:00/0000:00:02.0/sriov_numvfs'
