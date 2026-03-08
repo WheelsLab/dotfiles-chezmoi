@@ -15,5 +15,6 @@
     "diffEditor.ignoreTrimWhitespace": true,
     "makefile.configureOnOpen": true,
     "gitlens.views.commitDetails.files.layout": "tree",
-    "EIDE.ARM.GCC.Prefix": "arm-none-eabi-"
+    "EIDE.ARM.GCC.Prefix": "arm-none-eabi-",
+    "window.titleBarStyle": "native"
 }
