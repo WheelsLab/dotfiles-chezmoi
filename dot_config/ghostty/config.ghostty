@@ -1,0 +1,35 @@
+# launch shell
+command = /bin/fish
+shell-integration = fish
+# Font
+font-size = 11.5
+font-family = IosevkaTerm Nerd Font
+#font-family = Maple Mono NF CN SemiBold
+#font-family = 等距更纱黑体 SC Nerd Font SemiBold
+font-style = Bold
+font-feature = +liga
+
+# Cursor
+cursor-style = block 
+mouse-hide-while-typing
+
+## 不透明度设置
+# 控制终端背景的透明程度。1.0 是完全不透明（纯黑/纯白），0.0 是完全隐形（透明到只剩文字）。
+background-opacity = 0.8
+# Ghostty 自身的这个 background-blur 选项 在 Linux 上目前只原生支持 KDE Plasma 桌面！
+# 在其他 Linux 环境下基本是无效的。透明效果在 Compositor 级别设置（比如 Niri、Hyprland 都支持毛玻璃效果）
+# 当背景有透明度时，是否在终端后方开启毛玻璃效果。
+# background-blur = false 
+# 是否把透明效果强制应用到“自带背景色”(比如 Neovim)的文本区域。
+background-opacity-cells = false 
+window-padding-x = 4
+window-padding-y = 4
+window-padding-balance = true
+window-padding-color = extend
+
+# 快捷键
+# --- 配置文件管理 ---
+keybind = ctrl+shift+r=reload_config
+# 导入的设置会覆盖之前的设置，并且在导入语句之后的设置不会生效。
+config-file = ?config
+config-file = ?auto/theme.ghostty
