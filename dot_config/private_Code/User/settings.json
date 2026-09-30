@@ -8,7 +8,6 @@
     "dev.containers.dockerComposePath": "podman compose",
     "dev.containers.dockerPath": "podman",
     "dev.containers.dockerSocketPath": "/run/user/1001/podman/podman.sock",
-    "workbench.colorTheme": "Gruvbox Dark Soft",
     "workbench.iconTheme": "material-icon-theme",
     "editor.fontFamily": "'Sarasa Mono SC','Maple Mono NF CN Medium','Droid Sans Mono', monospace",
     "editor.fontLigatures": true,
@@ -16,5 +15,11 @@
     "makefile.configureOnOpen": true,
     "gitlens.views.commitDetails.files.layout": "tree",
     "EIDE.ARM.GCC.Prefix": "arm-none-eabi-",
-    "window.titleBarStyle": "native"
+    "window.titleBarStyle": "native",
+    "workbench.preferredDarkColorTheme": "Gruvbox Dark Soft",
+    "workbench.preferredLightColorTheme": "Gruvbox Light Soft",
+    "terminal.integrated.defaultProfile.linux": "fish",
+    "extensions.experimental.affinity": {
+        "asvetliakov.vscode-neovim": 1
+    }
 }
