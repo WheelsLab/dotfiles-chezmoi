@@ -35,6 +35,7 @@ input {
             // If this section is empty, niri will fetch xkb settings
             // from org.freedesktop.locale1. You can control these using
             // localectl set-x11-keymap.
+            options "ctrl:swapcaps"
         }
 
         // Enable numlock on startup, omitting this setting disables it.
@@ -262,6 +263,25 @@ window-rule {
     open-floating true
 }
 
+// 终端模拟器（磨砂玻璃背景）
+window-rule {
+    // 匹配你当前的 Ghostty 终端
+    match app-id=r#"^com\.mitchellh\.ghostty$"#
+    match app-id=r#"^Alacritty$"#
+
+    // 如果你在 Ghostty 自身的 config 里没设背景透明度，
+    // 可以在这里强制指定窗口透明度（0.0 - 1.0）
+    // opacity 0.87
+
+    // 开启毛玻璃模糊效果
+    background-effect {
+        blur true
+        xray false // 如果希望看到终端下方的其他窗口，可以解开此行注释
+        noise 0.05
+        saturation 2
+    }
+}
+
 debug {
     honor-xdg-activation-with-invalid-serial
 }
@@ -284,3 +304,4 @@ include "dms/outputs.kdl"
 include "dms/cursor.kdl"
 
 // 自定义配置
+include "dms/windowrules.kdl"
