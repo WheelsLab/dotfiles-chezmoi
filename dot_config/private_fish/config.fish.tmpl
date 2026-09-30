@@ -1,25 +1,70 @@
 if status is-interactive
     set -U fish_greeting
-    export EDITOR=vim
+    export EDITOR=nvim
     #export LC_ALL="C"
     # Commands to run in interactive sessions can go here
     export MANPAGER="sh -c 'awk '\''{ gsub(/\x1B\[[0-9;]*m/, \"\", \$0); gsub(/.\x08/, \"\", \$0); print }'\'' | bat -p -lman'"
     starship init fish | source
     zoxide init fish | source
-    # 常用命令别名
+    # 启动并复用 ssh-agent 进程
+    if not set -q SSH_AUTH_SOCK
+        eval (ssh-agent -c) >/dev/null
+    end
+
+    alias sioyek='env QT_QPA_PLATFORM=wayland sioyek'
+    # 基础文件操作 (使用 lsd 和 bat)
     alias ls='lsd'
-    alias l='ls -l'
-    alias la='ls -a'
-    alias lla='ls -la'
-    alias lt='ls --tree'
-    alias llt='ls -l --tree'
-    alias dust='dust -r'
-    alias typora='typora --ozone-platform-hint=auto --enable-wayland-ime  --wayland-text-input-version=3' 
-    alias vi='vim'
-    {{ if eq .chezmoi.hostname "archer-asus-pc" }}
-    alias sriov-on='echo 7 | sudo tee /sys/devices/pci0000:00/0000:00:02.0/sriov_numvfs'
-    alias sriov-off='echo 0 | sudo tee /sys/devices/pci0000:00/0000:00:02.0/sriov_numvfs'
-    alias setup-podman-nv='sudo nvidia-ctk cdi generate --output=/etc/cdi/nvidia.yaml'
-    export LIBVIRT_DEFAULT_URI="qemu:///system"	
-    {{ end }}
+    abbr -a ll 'ls -l'
+    abbr -a la 'ls -a'
+    abbr -a lla 'ls -la'
+    abbr -a lt 'ls --tree --depth 2'
+    abbr -a llt 'ls -l --tree --depth 2'
+    abbr -a cat 'bat -pp --no-paging'
+    abbr -a vi vim
+    abbr -a tree 'ls --tree --depth 2'
+    abbr -a man qman
+
+    # Neovim
+    abbr -a nv nvim
+
+    # git diff 两栏对比
+    export DELTA_FEATURES='+side-by-side my-feature'
+
+    # 容器
+    abbr -a dx distrobox
+    abbr -a dxe 'distrobox enter'
+    # 磁盘工具
+    abbr -a dust 'dust -r'
+
+    # GUI 应用 (Wayland 优化)
+    abbr -a typora 'typora --ozone-platform-hint=auto --enable-wayland-ime --wayland-text-input-version=3'
+
+    # 视频播放器
+    # abbr -a mpv 'mpv --sub-fonts-dir="./Fonts"'
+    # yazi 别名函数，用于在退出 yazi 后，cd 到对应目录
+    function y
+        set tmp (mktemp -t "yazi-cwd.XXXXXX")
+        command yazi $argv --cwd-file="$tmp"
+        if read -z cwd <"$tmp"; and [ "$cwd" != "$PWD" ]; and test -d "$cwd"
+            builtin cd -- "$cwd"
+        end
+        rm -f -- "$tmp"
+    end
+
+    # 便捷跳转到上级目录
+    # .. 跳转到上级目录、... 跳转到上上级目录、......
+    function multicd
+        echo cd (string repeat -n (math (string length -- $argv[1]) - 1) ../)
+    end
+    abbr --add dotdot --regex '^\.\.+$' --function multicd
+
+    # 配置 fzf 集成
+    fzf --fish | source
+{{ if eq .chezmoi.hostname "archer-asus-pc" }}
+    # 虚拟化与容器 (SR-IOV & Podman NVIDIA)
+    abbr -a sriov-on 'echo 7 | sudo tee /sys/devices/pci0000:00/0000:00:02.0/sriov_numvfs'
+    abbr -a sriov-off 'echo 0 | sudo tee /sys/devices/pci0000:00/0000:00:02.0/sriov_numvfs'
+    abbr -a setup-podman-nv 'sudo nvidia-ctk cdi generate --output=/etc/cdi/nvidia.yaml'
+    export LIBVIRT_DEFAULT_URI="qemu:///system"
+{{ end }}
 end
