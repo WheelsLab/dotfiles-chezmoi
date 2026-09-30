@@ -4,3 +4,9 @@ patch:
     key_binder/bindings/+:
       - { when: paging, accept: comma, send: Page_Up }
       - { when: has_menu, accept: period, send: Page_Down }
+    # 禁用 Rime 对 Caps Lock 的接管，让它只作为一个普通的大写键
+    ascii_composer/good_old_caps_lock: true
+    ascii_composer/switch_key:
+      Caps_Lock: noop  # 关键：让 Rime 忽略这个键，交给系统/Fcitx5处理
+      Shift_L: commit_code
+      Shift_R: commit_code
